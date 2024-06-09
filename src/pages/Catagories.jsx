@@ -42,7 +42,7 @@ function Catagories() {
   useEffect(()=>{
       
     
-      axios.post("http://localhost:3000/get-through-catagory",{catagory:searchCata})
+      axios.post("https://mern-bloging-website-production.up.railway.app/get-through-catagory",{catagory:searchCata})
         .then((res)=>{setPosts(res?.data?.data)})
         .catch(error=>console.log(error))
     
