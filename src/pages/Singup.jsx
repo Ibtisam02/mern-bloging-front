@@ -2,8 +2,11 @@ import React from 'react'
 import Heade from '../components/Heade'
 import axios from 'axios';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function Singup() {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -19,10 +22,22 @@ function Singup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3000/register",{name:formData.name,username:formData.username,password:formData.password,email:formData.email})
-    console.log(formData);
+    const config={
+      headers: {
+        "Content-Type": "application/json"
+        },
+        withCredentials: true
+    }
+    let {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/register",{name:formData.name,username:formData.username,password:formData.password,email:formData.email},config)
+    
+    if (data.error) {
+      toast.error(data.error)
+    }
+    else{
+      navigate("/")
+    }
   };
   return (
     
@@ -51,7 +66,7 @@ function Singup() {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              required
+            
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>

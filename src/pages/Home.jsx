@@ -15,7 +15,7 @@ function Home() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("http://localhost:3000/getLogin",config)
+        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])

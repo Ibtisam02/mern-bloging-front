@@ -17,11 +17,10 @@ function Login() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("http://localhost:3000/getLogin",config)
+        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])
-    console.log(user)
     if (user?.email=="ali1@g.com") {
       setAdmin(true)
     }
@@ -50,7 +49,7 @@ function Login() {
         },
         withCredentials: true
     }
-    let {data}=await axios.post("http://localhost:3000/login",{"username":formData.usernameOrEmail,"email":formData.usernameOrEmail,"password":formData.password},config)
+    let {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/login",{"username":formData.usernameOrEmail,"email":formData.usernameOrEmail,"password":formData.password},config)
    if (data?.error){
     toast.error(data?.error)
    }

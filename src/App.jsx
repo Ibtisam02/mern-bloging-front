@@ -10,6 +10,8 @@ import AddCatagory from './pages/AddCatagory'
 import Home from './pages/Home'
 import MyContextProvider from './context/MyContextProvider'
 import {Toaster} from "react-hot-toast"
+import Catagories from './pages/Catagories'
+import PrivatePosts from './pages/PrivatePosts'
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
       <Route path='/read' element={<ReadPost/>}/>
       <Route path='/add-catagory' element={<AddCatagory/>}/>
       <Route path='/'  element={<Home/>}/>
+      <Route path='/catagories'  element={<Catagories/>}/>
+      <Route path='/private'  element={<PrivatePosts/>}/>
      </Routes>
     </MyContextProvider>
   )

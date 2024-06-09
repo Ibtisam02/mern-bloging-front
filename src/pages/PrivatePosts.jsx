@@ -1,13 +1,12 @@
+
 import React, { useEffect, useState } from 'react'
 import Heade from '../components/Heade'
 import axios from 'axios'
 import { useContext } from 'react'
 import MyContext from '../context/CreateContext'
 import { Link } from 'react-router-dom'
-import Footer from '../components/Footer'
-
-function Blogs() {
-  let {user,setUser,setAdmin}=useContext(MyContext)
+function PrivatePosts() {
+    let {user,setUser,setAdmin}=useContext(MyContext)
     const config={
       headers: {
         "Content-Type": "application/json"
@@ -25,16 +24,16 @@ function Blogs() {
     else{
       setAdmin(false)
     }
-  const [posts,setPosts]=useState(null)
+  const [posts,setPosts]=useState([])
   useEffect(()=>{
-    axios.get("https://mern-bloging-website-production.up.railway.app/posts")
-    .then((res)=>{setPosts(res.data.data)})
+    axios.get("https://mern-bloging-website-production.up.railway.app/get-private-posts",config)
+    .then((res)=>{setPosts(res?.data?.data)})
     .catch(error=>console.log(error))
   },[])
   return (
-    <div>
-        <Heade/>
-        <div className='w-screen h-fit flex justify-center my-10 flex-wrap items-center gap-10'>
+    <>
+    <Heade/>
+    <div className='w-screen h-fit flex justify-center my-10 flex-wrap items-center gap-10'>
         {
           posts?.map((item)=>{
             return (
@@ -49,9 +48,8 @@ function Blogs() {
           })
         }
         </div>
-          <Footer/>
-    </div>
+    </>
   )
 }
 
-export default Blogs
+export default PrivatePosts

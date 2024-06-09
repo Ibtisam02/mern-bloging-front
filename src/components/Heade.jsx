@@ -30,14 +30,24 @@ function Heade() {
       path:"/",
       show: user?true:false
     },
+    {
+      text:"Catagories",
+      path:"/catagories",
+      show:true
+    },
+    {
+      text:"Private Posts",
+      path:"/private",
+      show:admin?true:false
+    }
   ]
   return (
-    <div>
-        <ul className=' flex flex-row-reverse py-12 justify-center items-center gap-x-16'>
+    <div className=' bg-orange-500 w-screen'>
+        <ul className=' flex flex-row-reverse py-12 justify-center items-center  gap-x-16'>
             {
               routes.map((item,i)=>{
                 return(
-                 item.show?<NavLink key={i} to={item.path}><li>{item.text}</li></NavLink>:null
+                 item.show?<NavLink key={i} to={item.path} className={({isActive })=>(isActive?"text-white":"")}><li>{item.text}</li></NavLink>:null
                 )
               })
             }

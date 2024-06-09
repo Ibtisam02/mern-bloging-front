@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast"
 import { useContext } from "react";
 import MyContext from "../context/CreateContext";
+import { useNavigate } from "react-router-dom";
 function CreatePost() {
+  let navigate=useNavigate()
   let {user,setUser,setAdmin}=useContext(MyContext)
     const config={
       headers: {
@@ -16,11 +18,10 @@ function CreatePost() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("http://localhost:3000/getLogin",config)
+        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])
-    console.log(user)
     if (user?.email=="ali1@g.com") {
       setAdmin(true)
     }
@@ -48,7 +49,7 @@ function CreatePost() {
     formData.append("privat", privat);
     formData.append("catagor", catagory);
     formData.append("subCatagor", subCatagory);
-      const {data}=await axios.post("http://localhost:3000/create-post", formData, {
+      const {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -58,6 +59,7 @@ function CreatePost() {
       toast.error(data.error)
      }
      else{
+      toast.success(data?.message)
       setTitle("");
       setImage(null)
       setDescription("")
@@ -65,17 +67,18 @@ function CreatePost() {
       setPrivate(true)
       setCatagory("")
     setSubCatagory("")
+    navigate("/blogs")
     }
     
   };
   useEffect(()=>{
-    axios.get("http://localhost:3000/subcatagories")
-    .then((res)=>{setAllSubCatagoris(res.data.data)})
+    axios.get("https://mern-bloging-website-production.up.railway.app/subcatagories")
+    .then((res)=>{setAllSubCatagoris(res.data?.data)})
     .catch(error=>console.log(error))
 
 
-    axios.get("http://localhost:3000/catagories")
-    .then((res)=>{setAllCatagoris(res.data.data)})
+    axios.get("https://mern-bloging-website-production.up.railway.app/catagories")
+    .then((res)=>{setAllCatagoris(res.data?.data)})
     .catch(error=>console.log(error))
   },[])
   return (
@@ -170,7 +173,9 @@ function CreatePost() {
               }}
               name=""
               id="Catagory"
+              
             >
+              <option value={"---select---"}>---select---</option>
               {
                 allCatagoris?.map((item)=>{
                   return (
@@ -196,6 +201,7 @@ function CreatePost() {
               name=""
               id="subCatagory"
             >
+              <option value={"---select---"}>---select---</option>
               {
                 allSubCatagoris?.map((item)=>{
                   return (

@@ -8,14 +8,21 @@ function AddCatagory() {
 
   const [subCatagoyText, setSubCatagoyText] = useState("");
     let [data1, setData1] = useState(null);
+    const config={
+      headers: {
+        "Content-Type": "application/json"
+        },
+        withCredentials: true
+    }
 
 
   const AddNewCatagory = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/add-catagory", { catagory: catagoyText })
+      .post("http://localhost:3000/add-catagory", { catagory: catagoyText },config)
       .then((res) => setData(res))
+      .then(()=>setCatagoyText(""))
       .catch((error) => console.log("this is an error" + error));
   };
 
@@ -27,13 +34,14 @@ function AddCatagory() {
       e.preventDefault();
 
       axios
-        .post("http://localhost:3000/add-subcatagory", { subCatagory: subCatagoyText })
-        .then((res) => setData1(res))
+        .post("https://mern-bloging-website-production.up.railway.app/add-subcatagory", { subCatagory: subCatagoyText },config)
+        .then((res) => setData1(res) )
+        .then(()=>setSubCatagoyText(""))
         .catch((error) => console.log("this is an error" + error));
+        
     };
   
-  console.log(data);
-  console.log(data1);
+  
   return (
     <>
       <Heade />
