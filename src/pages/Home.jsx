@@ -14,6 +14,7 @@ function Home() {
         },
         withCredentials: true
     }
+   
     useEffect(()=>{
         axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
         .then((res)=>setUser(res.data?.data))
