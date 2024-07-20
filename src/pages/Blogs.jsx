@@ -15,7 +15,7 @@ function Blogs() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+        axios.get("getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])
@@ -27,7 +27,7 @@ function Blogs() {
     }
   const [posts,setPosts]=useState(null)
   useEffect(()=>{
-    axios.get("https://mern-bloging-website-production.up.railway.app/posts")
+    axios.get("posts")
     .then((res)=>{setPosts(res.data.data)})
     .catch(error=>console.log(error))
   },[])

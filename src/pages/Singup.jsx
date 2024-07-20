@@ -30,7 +30,7 @@ function Singup() {
         },
         withCredentials: true
     }
-    let {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/register",{name:formData.name,username:formData.username,password:formData.password,email:formData.email},config)
+    let {data}=await axios.post("register",{name:formData.name,username:formData.username,password:formData.password,email:formData.email},config)
     
     if (data.error) {
       toast.error(data.error)

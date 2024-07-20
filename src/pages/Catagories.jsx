@@ -23,7 +23,7 @@ function Catagories() {
       withCredentials: true
   }
   useEffect(()=>{
-      axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+      axios.get("getLogin",config)
       .then((res)=>setUser(res.data?.data))
       .catch(error=>console.log(error))
   },[])
@@ -35,14 +35,14 @@ function Catagories() {
     setAdmin(false)
   }
   useEffect(()=>{
-    axios.get("https://mern-bloging-website-production.up.railway.app/posts")
+    axios.get("posts")
     .then((res)=>{setPosts(res?.data?.data)})
     .catch(error=>console.log(error))
   },[])
   useEffect(()=>{
       
     
-      axios.post("https://mern-bloging-website-production.up.railway.app/get-through-catagory",{catagory:searchCata})
+      axios.post("get-through-catagory",{catagory:searchCata})
         .then((res)=>{setPosts(res?.data?.data)})
         .catch(error=>console.log(error))
     
@@ -51,18 +51,18 @@ function Catagories() {
   useEffect(()=>{
       
     
-    axios.post("https://mern-bloging-website-production.up.railway.app/get-through-sub-catagory",{subCatagory:searchSubCata})
+    axios.post("get-through-sub-catagory",{subCatagory:searchSubCata})
       .then((res)=>{setPosts(res?.data?.data)})
       .catch(error=>console.log(error))
   
 },[searchSubCata])
     useEffect(()=>{
-        axios.get("https://mern-bloging-website-production.up.railway.app/subcatagories")
+        axios.get("subcatagories")
         .then((res)=>{setAllSubCatagoris(res.data.data)})
         .catch(error=>console.log(error))
     
     
-        axios.get("https://mern-bloging-website-production.up.railway.app/catagories")
+        axios.get("catagories")
         .then((res)=>{setAllCatagoris(res.data.data)})
         .catch(error=>console.log(error))
       },[])

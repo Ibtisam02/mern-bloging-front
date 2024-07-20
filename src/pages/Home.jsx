@@ -16,7 +16,7 @@ function Home() {
     }
    
     useEffect(()=>{
-        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+        axios.get("getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])

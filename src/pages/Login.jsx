@@ -17,7 +17,7 @@ function Login() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+        axios.get("getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])
@@ -49,7 +49,7 @@ function Login() {
         },
         withCredentials: true
     }
-    let {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/login",{"username":formData.usernameOrEmail,"email":formData.usernameOrEmail,"password":formData.password},config)
+    let {data}=await axios.post("login",{"username":formData.usernameOrEmail,"email":formData.usernameOrEmail,"password":formData.password},config)
    if (data?.error){
     toast.error(data?.error)
    }

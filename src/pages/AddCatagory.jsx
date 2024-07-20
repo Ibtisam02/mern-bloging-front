@@ -20,7 +20,7 @@ function AddCatagory() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/add-catagory", { catagory: catagoyText },config)
+      .post("add-catagory", { catagory: catagoyText },config)
       .then((res) => setData(res))
       .then(()=>setCatagoyText(""))
       .catch((error) => console.log("this is an error" + error));
@@ -34,7 +34,7 @@ function AddCatagory() {
       e.preventDefault();
 
       axios
-        .post("https://mern-bloging-website-production.up.railway.app/add-subcatagory", { subCatagory: subCatagoyText },config)
+        .post("add-subcatagory", { subCatagory: subCatagoyText },config)
         .then((res) => setData1(res) )
         .then(()=>setSubCatagoyText(""))
         .catch((error) => console.log("this is an error" + error));

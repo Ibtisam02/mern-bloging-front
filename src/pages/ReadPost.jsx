@@ -24,7 +24,7 @@ function ReadPost() {
   }
   let deletePost=async()=>{
     
-  const {data}=  await axios.delete(`https://mern-bloging-website-production.up.railway.app/posts/${id}`,config)
+  const {data}=  await axios.delete(`posts/${id}`,config)
   console.log(data)
   if (data?.success) {
     toast.success(data.success)
@@ -40,7 +40,7 @@ function ReadPost() {
         },
         withCredentials: true
     }
-    const {data}=  await axios.get(`https://mern-bloging-website-production.up.railway.app/change-post-privacy/${id}`,config)
+    const {data}=  await axios.get(`change-post-privacy/${id}`,config)
   console.log(data)
   if (data?.error) {
     toast.error(data?.error)
@@ -54,7 +54,7 @@ function ReadPost() {
 
   useEffect(()=>{
     
-    axios.get(`https://mern-bloging-website-production.up.railway.app/posts/${id}`)
+    axios.get(`/posts/${id}`)
     .then((res)=>{
       if(res?.data?.error){
         toast.error("invalid id")
@@ -65,7 +65,7 @@ function ReadPost() {
   },[id,post])
   
   useEffect(()=>{
-      axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+      axios.get("getLogin",config)
       .then((res)=>setUser(res.data?.data))
       .catch(error=>console.log(error))
   },[])

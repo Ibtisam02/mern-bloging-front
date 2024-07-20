@@ -18,7 +18,7 @@ function CreatePost() {
         withCredentials: true
     }
     useEffect(()=>{
-        axios.get("https://mern-bloging-website-production.up.railway.app/getLogin",config)
+        axios.get("getLogin",config)
         .then((res)=>setUser(res.data?.data))
         .catch(error=>console.log(error))
     },[])
@@ -49,7 +49,7 @@ function CreatePost() {
     formData.append("privat", privat);
     formData.append("catagor", catagory);
     formData.append("subCatagor", subCatagory);
-      const {data}=await axios.post("https://mern-bloging-website-production.up.railway.app/create-post", formData, {
+      const {data}=await axios.post("create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -72,12 +72,12 @@ function CreatePost() {
     
   };
   useEffect(()=>{
-    axios.get("https://mern-bloging-website-production.up.railway.app/subcatagories")
+    axios.get("subcatagories")
     .then((res)=>{setAllSubCatagoris(res.data?.data)})
     .catch(error=>console.log(error))
 
 
-    axios.get("https://mern-bloging-website-production.up.railway.app/catagories")
+    axios.get("catagories")
     .then((res)=>{setAllCatagoris(res.data?.data)})
     .catch(error=>console.log(error))
   },[])

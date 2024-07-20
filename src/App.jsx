@@ -14,10 +14,11 @@ import Catagories from './pages/Catagories'
 import PrivatePosts from './pages/PrivatePosts'
 
 
+
 function App() {
   
   return (
-    <MyContextProvider>
+    <MyContextProvider >
     <Toaster position="bottom-right" toastOptions={{duration:2000}}/>
      <Routes>
       <Route path='/create-post' element={<CreatePost/>}/>
