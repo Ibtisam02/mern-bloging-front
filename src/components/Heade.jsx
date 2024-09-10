@@ -27,7 +27,7 @@ function Heade() {
     },
     {
       text:"Profile",
-      path:"/",
+      path:"/profile",
       show: user?true:false
     },
     {
@@ -39,6 +39,11 @@ function Heade() {
       text:"Private Posts",
       path:"/private",
       show:admin?true:false
+    },
+    {
+      text:"Home",
+      path:"/",
+      show:true
     }
   ]
   return (
